@@ -12,6 +12,7 @@
         name="opcoes_menu">
         <item>Home</item>
         <item>Frase do dia</item>
+        <item>Cartão</item>
     </string-array>
 
     <!--! Frases !-->
@@ -21,5 +22,6 @@
     <string name="alerta_opcao_invalida">Opção inválida</string>
     <string name="alerta_server_error">Não foi possível conectar-se ao servidor</string>
     <string name="alerta_no_content">Nenhuma informação para ser visualizada</string>
+    <string name="menssage">Abrindo...</string>
 
 </resources>
