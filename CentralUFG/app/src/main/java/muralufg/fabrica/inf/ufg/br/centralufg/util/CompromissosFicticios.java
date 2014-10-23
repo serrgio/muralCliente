@@ -50,50 +50,44 @@
  * para detalhes.
  */
 
-package muralufg.fabrica.inf.ufg.br.centralufg.compromisso.fragments;
+package muralufg.fabrica.inf.ufg.br.centralufg.util;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import java.util.List;
-import muralufg.fabrica.inf.ufg.br.centralufg.R;
+import android.content.Context;
+
 import muralufg.fabrica.inf.ufg.br.centralufg.compromisso.dao.CompromissoDAO;
 import muralufg.fabrica.inf.ufg.br.centralufg.model.Compromisso;
 
-public class CompromissoFragment extends Fragment {
+/* Classe com compromissos fictícios para popular o banco
+ * enquanto ainda não temos o servidor, por enquanto
+ * o servidor que envia a ordem dos compromissos.
+ */
+public class CompromissosFicticios {
 
-    public static final String ARG_DATA = "data";
+	public static void criaCompromissosFicticios(Context context) {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+        Compromisso compromisso1 = new Compromisso(1, "Prova de TACS",
+                "A prova de Técnicas avançadas de construção de software será na sala" +
+                        "106, no centro de aulas A.", "17/10/2014");
+        Compromisso compromisso2 = new Compromisso(2, "Verificar notas da prova TACS",
+                "As notas da prova de Técnicas avançadas de construção de software já estão" +
+                        "disponíveis no Moodle para consulta.", "21/10/2014");
+        Compromisso compromisso3 = new Compromisso(3, "Lembrete de aula",
+                "Lembrete que haverá aula normalmente hoje de Prática em Engenharia" +
+                        "de software.", "21/10/2014");
+        Compromisso compromisso4 = new Compromisso(4, "Não haverá aula",
+                "Lembrete que não haverá aula de Técnicas avançadas de construção de software" +
+                        "no dia 24 de outubro de 2014.", "24/10/2014");
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+		CompromissoDAO compromissoDAO = CompromissoDAO.getInstance(context);
 
-        View rootView = inflater.inflate(R.layout.fragment_compromisso, container, false);
+        compromissoDAO.deletarTodosCompromissos();
 
-        Bundle args = getArguments();
-        String data = args.getString(ARG_DATA);
+        compromissoDAO.salvar(compromisso1);
+        compromissoDAO.salvar(compromisso2);
+        compromissoDAO.salvar(compromisso3);
+        compromissoDAO.salvar(compromisso4);
 
-        CompromissoDAO compromissoDAO = CompromissoDAO.getInstance(getActivity());
+		// compromissoDAO.fecharConexao();
+	}
 
-        List<Compromisso> compromissosNaBase = compromissoDAO.recuperarCompromissoPorData(data);
-
-        final Compromisso [] compromissos = compromissosNaBase.toArray(
-                new Compromisso[compromissosNaBase.size()]);
-
-        ListView listView = (ListView) rootView.findViewById(R.id.listViewCompromisso);
-        ArrayAdapter<Compromisso> adapter = new ArrayAdapter<Compromisso>(getActivity(),
-                android.R.layout.simple_list_item_1, compromissos);
-        listView.setAdapter(adapter);
-
-        return rootView;
-    }
 }

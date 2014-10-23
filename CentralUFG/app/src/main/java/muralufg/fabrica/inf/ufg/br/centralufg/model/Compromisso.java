@@ -53,7 +53,10 @@ package muralufg.fabrica.inf.ufg.br.centralufg.model;
 
 import java.util.Calendar;
 
+import muralufg.fabrica.inf.ufg.br.centralufg.util.CalendarFormatter;
+
 public class Compromisso {
+    private int id;
     private String nome;
     private String descricao;
     private Calendar data;
@@ -61,10 +64,19 @@ public class Compromisso {
     public Compromisso() {
     }
 
-    public Compromisso(String nome, String descricao, Calendar data) {
+    public Compromisso(int id, String nome, String descricao, String data) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.data = data;
+        setStringData(data);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -91,10 +103,16 @@ public class Compromisso {
         this.data = data;
     }
 
+    public String getStringData(){
+        return  CalendarFormatter.calendarToString(data);
+    }
+
+    public void setStringData(String data){
+        this.data = CalendarFormatter.stringToCalendar(data);
+    }
+
     @Override
     public String toString() {
-        return nome + "    " + data.get(Calendar.DAY_OF_MONTH)
-                + "/" + data.get(Calendar.MONTH)
-                + "/" + data.get(Calendar.YEAR);
+        return nome + "    " + getStringData();
     }
 }

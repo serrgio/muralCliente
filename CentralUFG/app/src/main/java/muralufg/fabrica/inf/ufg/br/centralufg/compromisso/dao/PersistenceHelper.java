@@ -50,50 +50,38 @@
  * para detalhes.
  */
 
-package muralufg.fabrica.inf.ufg.br.centralufg.compromisso.fragments;
+package muralufg.fabrica.inf.ufg.br.centralufg.compromisso.dao;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import java.util.List;
-import muralufg.fabrica.inf.ufg.br.centralufg.R;
-import muralufg.fabrica.inf.ufg.br.centralufg.compromisso.dao.CompromissoDAO;
-import muralufg.fabrica.inf.ufg.br.centralufg.model.Compromisso;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-public class CompromissoFragment extends Fragment {
-
-    public static final String ARG_DATA = "data";
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+public class PersistenceHelper extends SQLiteOpenHelper {
+	 
+    public static final String NOME_BANCO =  "BancoCompromisso";
+    public static final int VERSAO =  1;
+     
+    private static PersistenceHelper instance;
+     
+    private PersistenceHelper(Context context) {
+        super(context, NOME_BANCO, null, VERSAO);
     }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_compromisso, container, false);
-
-        Bundle args = getArguments();
-        String data = args.getString(ARG_DATA);
-
-        CompromissoDAO compromissoDAO = CompromissoDAO.getInstance(getActivity());
-
-        List<Compromisso> compromissosNaBase = compromissoDAO.recuperarCompromissoPorData(data);
-
-        final Compromisso [] compromissos = compromissosNaBase.toArray(
-                new Compromisso[compromissosNaBase.size()]);
-
-        ListView listView = (ListView) rootView.findViewById(R.id.listViewCompromisso);
-        ArrayAdapter<Compromisso> adapter = new ArrayAdapter<Compromisso>(getActivity(),
-                android.R.layout.simple_list_item_1, compromissos);
-        listView.setAdapter(adapter);
-
-        return rootView;
+     
+    public static PersistenceHelper getInstance(Context context) {
+        if(instance == null)
+            instance = new PersistenceHelper(context);
+        return instance;
     }
+ 
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CompromissoDAO.SCRIPT_CRIACAO_TABELA);
+    }
+ 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(CompromissoDAO.SCRIPT_DELECAO_TABELA);
+        onCreate(db);
+    }
+ 
 }

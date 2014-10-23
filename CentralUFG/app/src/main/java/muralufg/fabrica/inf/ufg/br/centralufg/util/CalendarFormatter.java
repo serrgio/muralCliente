@@ -50,50 +50,38 @@
  * para detalhes.
  */
 
-package muralufg.fabrica.inf.ufg.br.centralufg.compromisso.fragments;
+package muralufg.fabrica.inf.ufg.br.centralufg.util;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import java.util.List;
-import muralufg.fabrica.inf.ufg.br.centralufg.R;
-import muralufg.fabrica.inf.ufg.br.centralufg.compromisso.dao.CompromissoDAO;
-import muralufg.fabrica.inf.ufg.br.centralufg.model.Compromisso;
+import android.util.Log;
 
-public class CompromissoFragment extends Fragment {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-    public static final String ARG_DATA = "data";
+/* Classe responsável pela formatação das datas.
+ */
+public class CalendarFormatter {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static Calendar stringToCalendar(String data){
+        Calendar calendar = Calendar.getInstance();
+        try{
+            SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+            calendar.setTime(formatoData.parse(data));
+            return calendar;
+        } catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+        }
+        return calendar;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_compromisso, container, false);
-
-        Bundle args = getArguments();
-        String data = args.getString(ARG_DATA);
-
-        CompromissoDAO compromissoDAO = CompromissoDAO.getInstance(getActivity());
-
-        List<Compromisso> compromissosNaBase = compromissoDAO.recuperarCompromissoPorData(data);
-
-        final Compromisso [] compromissos = compromissosNaBase.toArray(
-                new Compromisso[compromissosNaBase.size()]);
-
-        ListView listView = (ListView) rootView.findViewById(R.id.listViewCompromisso);
-        ArrayAdapter<Compromisso> adapter = new ArrayAdapter<Compromisso>(getActivity(),
-                android.R.layout.simple_list_item_1, compromissos);
-        listView.setAdapter(adapter);
-
-        return rootView;
+    public static String calendarToString(Calendar calendar){
+        String retorno = "";
+        try {
+            SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+            retorno = formatoData.format(calendar.getTime());
+            System.out.println(retorno);
+        } catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+        }
+        return retorno;
     }
 }
