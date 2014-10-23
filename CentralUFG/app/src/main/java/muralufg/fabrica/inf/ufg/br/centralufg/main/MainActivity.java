@@ -51,6 +51,7 @@
  */
 package muralufg.fabrica.inf.ufg.br.centralufg.main;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -70,6 +71,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.fragments.FraseDoDiaFragment;
+import muralufg.fabrica.inf.ufg.br.ouvidoria.OuvidoriaFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -203,10 +205,21 @@ public class MainActivity extends ActionBarActivity {
             case 1:
                 return new FraseDoDiaFragment();
 
+            case 2:
+                return new OuvidoriaFragment();
+
             default:
                 Crouton.makeText(this, getResources().getString(R.string.alerta_opcao_invalida),
                         Style.ALERT).show();
                 return new HelloFragment();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
         }
     }
 

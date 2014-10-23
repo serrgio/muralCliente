@@ -12,6 +12,7 @@
         name="opcoes_menu">
         <item>Home</item>
         <item>Frase do dia</item>
+        <item>Ouvidoria</item>
     </string-array>
 
     <!--! Frases !-->
@@ -21,5 +22,16 @@
     <string name="alerta_opcao_invalida">Opção inválida</string>
     <string name="alerta_server_error">Não foi possível conectar-se ao servidor</string>
     <string name="alerta_no_content">Nenhuma informação para ser visualizada</string>
+
+    <!--! OUVIDORIA !-->
+    <string name="action_anexar_imagem">Anexar imagem</string>
+    <string name="action_anexar_audio">Anexar audio</string>
+    <string name="action_anexar_video">Anexar vídeo</string>
+    <string name="action_enviar">Enviar</string>
+    <string name="titulo">Título</string>
+    <string name="descricao">Descição</string>
+    <string name="anexos">Anexos</string>
+    <string name="nome_anexo">nome do arquivo</string>
+    <string name="excluir_anexo">x</string>
 
 </resources>
