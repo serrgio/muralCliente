@@ -13,9 +13,6 @@ import android.widget.ListView;
 public class EventosActivity extends Activity {
 
     ListView listView;
-
-
-
     // TODO colocar um método que puxa as categorias, pois elas pode mudar ou podem não ter subitens na categoria
     // TODO as categorias deverão ser puxadas e colocadas no arrey em ordem alfabética
     String[] tiposDeCategorias = {"Apresentação", "Congressos", "Defesas", "Palestras", "Provas",
@@ -24,15 +21,11 @@ public class EventosActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categorias);
+        setContentView(R.layout.activity_categoriasdeeventos);
         listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> array = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, tiposDeCategorias);
         listView.setAdapter(array);
-
-        Intent i = new Intent(this, Teste.class);
-        startActivity(i);
-
     }
 
     @Override
