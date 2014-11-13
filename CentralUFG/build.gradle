@@ -1,6 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin: 'sonar'
 
+sonarRunner {
+    sonarProperties {
+    property "sonar.projectKey", projectId
+    property "sonar.projectName", projectName
+
+    // Address of SonarQube server
+    property "sonar.host.url", "http://localhost:9000"
+
+    // Database config
+    //property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
+    //property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+    //property "sonar.jdbc.username", "root"
+    //property "sonar.jdbc.password", "superSecret"
+    }
+}
+
 buildscript {
     repositories {
         jcenter()
