@@ -4,7 +4,7 @@ apply plugin: 'sonar'
 sonarRunner {
     sonarProperties {
     property "sonar.projectKey", muralCliente
-    property "sonar.projectName", muralCliente
+    property "sonar.projectName", muralClienteId
 
     // Address of SonarQube server
     property "sonar.host.url", "http://localhost:9000"
