@@ -3,17 +3,12 @@ apply plugin: 'sonar'
 
 sonarRunner {
     sonarProperties {
-    property "sonar.projectKey", projectId
-    property "sonar.projectName", projectName
+    property "sonar.projectKey", muralCliente
+    property "sonar.projectName", muralCliente
 
     // Address of SonarQube server
     property "sonar.host.url", "http://localhost:9000"
 
-    // Database config
-    //property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
-    //property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
-    //property "sonar.jdbc.username", "root"
-    //property "sonar.jdbc.password", "superSecret"
     }
 }
 
