@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.model.OuvidoriaItemAnexo;
-import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.ScrollDisabledListView;
 import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.adapters.AnexoAdapter;
 
 public class OuvidoriaFragment extends Fragment {
