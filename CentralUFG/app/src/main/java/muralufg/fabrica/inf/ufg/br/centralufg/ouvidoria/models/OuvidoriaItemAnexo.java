@@ -1,4 +1,4 @@
-package muralufg.fabrica.inf.ufg.br.centralufg.model;
+package muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.models;
 
 public class OuvidoriaItemAnexo {
 

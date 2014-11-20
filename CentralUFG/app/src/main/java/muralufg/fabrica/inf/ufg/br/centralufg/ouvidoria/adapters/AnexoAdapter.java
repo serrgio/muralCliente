@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
-import muralufg.fabrica.inf.ufg.br.centralufg.model.OuvidoriaItemAnexo;
+import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.models.OuvidoriaItemAnexo;
 
 public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
 
