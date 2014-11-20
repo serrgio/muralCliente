@@ -22,7 +22,7 @@ public class Notificacao extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Button button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.bottom);
         button.setOnClickListener(this);
 
     }

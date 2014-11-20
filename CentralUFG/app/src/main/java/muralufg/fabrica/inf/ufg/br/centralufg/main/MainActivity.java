@@ -68,10 +68,9 @@ import android.widget.ListView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
-import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.fragments.FraseDoDiaFragment;
-import muralufg.fabrica.inf.ufg.br.ouvidoria.OuvidoriaFragment;
+import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.fragments.OuvidoriaFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -164,7 +163,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
-        }else{
+        } else {
             Crouton.makeText(this, item.getTitle() + " selecionado", Style.INFO).show();
         }
 
@@ -178,10 +177,12 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    /** Swaps fragments in the main content view */
+    /**
+     * Swaps fragments in the main content view
+     */
     private void selectItem(int position) {
         // Create a new fragment and specify the planet to show based on position
-        Fragment fragment =getFragmentFromPosition(position);
+        Fragment fragment = getFragmentFromPosition(position);
         Bundle args = new Bundle();
         fragment.setArguments(args);
 
@@ -197,8 +198,8 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    private Fragment getFragmentFromPosition(int position){
-        switch (position){
+    private Fragment getFragmentFromPosition(int position) {
+        switch (position) {
             case 0:
                 return new HelloFragment();
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--! OUVIDORIA !-->
+    <string name="action_anexar">Selecionar anexo</string>
+    <string name="action_anexar_imagem">Anexar imagem</string>
+    <string name="action_anexar_audio">Anexar audio</string>
+    <string name="action_anexar_video">Anexar vídeo</string>
+    <string name="action_enviar">Enviar</string>
+    <string name="titulo">Título</string>
+    <string name="descricao">Descrição</string>
+    <string name="anexos">Anexos</string>
+    <string name="nome_anexo">Nome do anexo</string>
+    <string name="excluir_anexo">x</string>
+
+</resources>

@@ -1,6 +1,6 @@
-package muralufg.fabrica.inf.ufg.br.ouvidoria;
+package muralufg.fabrica.inf.ufg.br.centralufg.model;
 
-public class ItemAnexo {
+public class OuvidoriaItemAnexo {
 
     public enum Media{
         IMAGEM,AUDIO,VIDEO;
@@ -10,7 +10,7 @@ public class ItemAnexo {
     private String uri;
     private Media media;
 
-    public ItemAnexo(String nome, String uri, Media media){
+    public OuvidoriaItemAnexo(String nome, String uri, Media media){
         this.setNome(nome);
         this.setUri(uri);
         this.setMedia(media);

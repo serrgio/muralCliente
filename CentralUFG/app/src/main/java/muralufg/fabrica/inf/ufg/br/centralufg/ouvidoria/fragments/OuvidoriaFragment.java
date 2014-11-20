@@ -1,4 +1,4 @@
-package muralufg.fabrica.inf.ufg.br.ouvidoria;
+package muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +22,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
+import muralufg.fabrica.inf.ufg.br.centralufg.model.OuvidoriaItemAnexo;
+import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.ScrollDisabledListView;
+import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.adapters.AnexoAdapter;
 
 public class OuvidoriaFragment extends Fragment {
 
@@ -33,10 +36,10 @@ public class OuvidoriaFragment extends Fragment {
     public static final String AUDIO_TYPE = "audio/*";
     public static final String VIDEO_TYPE = "video/*";
 
-    private TextView tituloText;
-    private TextView descricaoText;
-    private ListView anexosListView;
-    private ArrayAdapter<ItemAnexo> adapterAnexos;
+    private TextView mOuvidoriaTitulo;
+    private TextView mOuvidoriaDescricao;
+    private ListView mOuvidoriaListaAnexos;
+    private ArrayAdapter<OuvidoriaItemAnexo> mAdapaterAnexos;
 
     public OuvidoriaFragment() {
     }
@@ -48,9 +51,9 @@ public class OuvidoriaFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_ouvidoria, container, false);
 
-        tituloText = (TextView) rootView.findViewById(R.id.tituloText);
-        descricaoText = (TextView) rootView.findViewById(R.id.descricaoText);
-        anexosListView = (ListView) rootView.findViewById(R.id.anexosGridView);
+        mOuvidoriaTitulo = (TextView) rootView.findViewById(R.id.ouvidoriaTitulo);
+        mOuvidoriaDescricao = (TextView) rootView.findViewById(R.id.ouvidoriaDescricao);
+        mOuvidoriaListaAnexos = (ListView) rootView.findViewById(R.id.ouvidoriaListaAnexos);
 
         return rootView;
     }
@@ -59,8 +62,8 @@ public class OuvidoriaFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapterAnexos = new AnexoAdapter(getActivity(), new ArrayList<ItemAnexo>());
-        anexosListView.setAdapter(adapterAnexos);
+        mAdapaterAnexos = new AnexoAdapter(getActivity(), new ArrayList<OuvidoriaItemAnexo>());
+        mOuvidoriaListaAnexos.setAdapter(mAdapaterAnexos);
     }
 
     @Override
@@ -73,7 +76,7 @@ public class OuvidoriaFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.action_enviar:
                 enviarMensagem();
                 break;
@@ -94,15 +97,16 @@ public class OuvidoriaFragment extends Fragment {
     /**
      * Enviar mensagem
      */
-    private void enviarMensagem(){
+    private void enviarMensagem() {
         showMenssage("Enviando...");
     }
 
     /**
      * Abrir seletor de arquivo
+     *
      * @param type de arquivo deve visualizar
      */
-    private void chooserArquivo(String type){
+    private void chooserArquivo(String type) {
         Intent chooseIntent = new Intent(Intent.ACTION_PICK);
         chooseIntent.setType(type);
         chooseIntent.setAction(Intent.ACTION_GET_CONTENT);
@@ -112,20 +116,20 @@ public class OuvidoriaFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK) {
-            final ItemAnexo itemAnexo;
+        if (resultCode == Activity.RESULT_OK) {
+            final OuvidoriaItemAnexo ouvidoriaItemAnexo;
             switch (requestCode) {
                 case SELECT_IMAGEM:
-                    itemAnexo = new ItemAnexo(getFileName(data.getData()), getFileName(data.getData()), ItemAnexo.Media.IMAGEM);
-                    addItemLista(itemAnexo);
+                    ouvidoriaItemAnexo = new OuvidoriaItemAnexo(getFileName(data.getData()), getFileName(data.getData()), OuvidoriaItemAnexo.Media.IMAGEM);
+                    addItemLista(ouvidoriaItemAnexo);
                     break;
                 case SELECT_AUDIO:
-                    itemAnexo = new ItemAnexo(getFileName(data.getData()), data.getData().getPath(), ItemAnexo.Media.AUDIO);
-                    addItemLista(itemAnexo);
+                    ouvidoriaItemAnexo = new OuvidoriaItemAnexo(getFileName(data.getData()), data.getData().getPath(), OuvidoriaItemAnexo.Media.AUDIO);
+                    addItemLista(ouvidoriaItemAnexo);
                     break;
                 case SELECT_VIDEO:
-                    itemAnexo = new ItemAnexo(getFileName(data.getData()), data.getData().getPath(), ItemAnexo.Media.VIDEO);
-                    addItemLista(itemAnexo);
+                    ouvidoriaItemAnexo = new OuvidoriaItemAnexo(getFileName(data.getData()), data.getData().getPath(), OuvidoriaItemAnexo.Media.VIDEO);
+                    addItemLista(ouvidoriaItemAnexo);
                     break;
             }
         }
@@ -153,13 +157,20 @@ public class OuvidoriaFragment extends Fragment {
         return result;
     }
 
-    private void addItemLista(ItemAnexo itemAnexo ){
-        adapterAnexos.add(itemAnexo);
-        adapterAnexos.notifyDataSetChanged();
-        showMenssage(itemAnexo.getUri());
+    /**
+     * Adicionar os anexos selecionados na lista para visualização
+     * @param ouvidoriaItemAnexo
+     */
+    private void addItemLista(OuvidoriaItemAnexo ouvidoriaItemAnexo) {
+        mAdapaterAnexos.add(ouvidoriaItemAnexo);
+        mAdapaterAnexos.notifyDataSetChanged();
     }
 
-    private void showMenssage(String mensagem){
+    /**
+     * Mostrar o Toast para o usuário
+     * @param mensagem
+     */
+    private void showMenssage(String mensagem) {
         Toast.makeText(getActivity(), mensagem, Toast.LENGTH_SHORT).show();
     }
 

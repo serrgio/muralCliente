@@ -1,29 +1,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MyActivity" >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MyActivity">
+    <item
+        android:icon="@drawable/ic_action_file_attachment"
+        android:orderInCategory="100"
+        android:title="@string/action_anexar"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_anexar_imagem"
+                android:orderInCategory="100"
+                android:title="@string/action_anexar_imagem"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/action_anexar_audio"
+                android:orderInCategory="100"
+                android:title="@string/action_anexar_audio"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_anexar_video"
+                android:orderInCategory="100"
+                android:title="@string/action_anexar_video"
+                app:showAsAction="never" />
+        </menu>
+    </item>
     <item
         android:id="@+id/action_enviar"
+        android:icon="@drawable/ic_action_content_send"
         android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_action_enviar"
-        android:title="@string/action_enviar">
-    </item>
-    <item
-        android:id="@+id/action_anexar_imagem"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_anexar_imagem">
-
-    </item>
-    <item
-        android:id="@+id/action_anexar_audio"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_anexar_audio" />
-    <item
-        android:id="@+id/action_anexar_video"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_anexar_video" />
+        android:title="@string/action_enviar"
+        app:showAsAction="always"/>
 </menu>
