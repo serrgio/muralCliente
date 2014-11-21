@@ -63,6 +63,9 @@ import muralufg.fabrica.inf.ufg.br.centralufg.model.Compromisso;
  */
 public class CompromissosFicticios {
 
+    private CompromissosFicticios(){
+    }
+
 	public static void criaCompromissosFicticios(Context context) {
 
         Compromisso compromisso1 = new Compromisso(1, "Prova de TACS",
@@ -86,8 +89,6 @@ public class CompromissosFicticios {
         compromissoDAO.salvar(compromisso2);
         compromissoDAO.salvar(compromisso3);
         compromissoDAO.salvar(compromisso4);
-
-		// compromissoDAO.fecharConexao();
 	}
 
 }

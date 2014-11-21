@@ -81,8 +81,9 @@ public class CompromissoDAO {
     private static CompromissoDAO instance;
      
     public static CompromissoDAO getInstance(Context context) {
-        if(instance == null)
+        if(instance == null) {
             instance = new CompromissoDAO(context);
+        }
         return instance;
     }
  
@@ -144,15 +145,16 @@ public class CompromissoDAO {
     }
  
     public void fecharConexao() {
-        if(dataBase != null && dataBase.isOpen())
-            dataBase.close(); 
+        if(dataBase != null && dataBase.isOpen()) {
+            dataBase.close();
+        }
     }
  
     private List<Compromisso> construirCompromissoPorCursor(Cursor cursor) {
         List<Compromisso> compromissos = new ArrayList<Compromisso>();
-        if(cursor == null)
+        if(cursor == null) {
             return compromissos;
-         
+        }
         try {
  
             if (cursor.moveToFirst()) {
@@ -182,9 +184,9 @@ public class CompromissoDAO {
 
     private List<String> construirDatasPorCursor(Cursor cursor) {
         List<String> datas = new ArrayList<String>();
-        if(cursor == null)
+        if(cursor == null) {
             return datas;
-
+        }
         try {
 
             if (cursor.moveToFirst()) {

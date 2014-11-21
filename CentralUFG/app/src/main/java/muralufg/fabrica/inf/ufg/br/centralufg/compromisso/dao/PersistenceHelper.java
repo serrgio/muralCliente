@@ -68,8 +68,9 @@ public class PersistenceHelper extends SQLiteOpenHelper {
     }
      
     public static PersistenceHelper getInstance(Context context) {
-        if(instance == null)
+        if(instance == null) {
             instance = new PersistenceHelper(context);
+        }
         return instance;
     }
  

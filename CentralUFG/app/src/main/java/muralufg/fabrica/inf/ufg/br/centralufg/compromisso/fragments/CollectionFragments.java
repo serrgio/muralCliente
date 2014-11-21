@@ -93,7 +93,7 @@ public class CollectionFragments extends Fragment {
         int qtdeDatasDistintas = compromissoDAO.contaDatasDistintas();
         List<String> datas = compromissoDAO.recuperaDatasDistintas();
 
-        ArrayList<Fragment> fragments = criaFragments(qtdeDatasDistintas, datas);
+        List<Fragment> fragments = criaFragments(qtdeDatasDistintas, datas);
 
         mCollectionPagerAdapter = new CollectionPagerAdapter(getActivity().getSupportFragmentManager(), fragments);
 
@@ -101,8 +101,8 @@ public class CollectionFragments extends Fragment {
         mViewPager.setAdapter(mCollectionPagerAdapter);
     }
 
-    public ArrayList<Fragment> criaFragments(int qtdeFragments, List<String> datas){
-        ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    public List<Fragment> criaFragments(int qtdeFragments, List<String> datas){
+        List<Fragment> fragments = new ArrayList<Fragment>();
         for (int i = 0; i < qtdeFragments; i++){
             String dataDesteFragment = datas.get(i);
             Fragment fragment = new CompromissoFragment();
@@ -116,9 +116,9 @@ public class CollectionFragments extends Fragment {
 
     public static class CollectionPagerAdapter extends FragmentStatePagerAdapter {
 
-        ArrayList<Fragment> listaFragments = new ArrayList<Fragment>();
+        List<Fragment> listaFragments = new ArrayList<Fragment>();
 
-        public CollectionPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
+        public CollectionPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
             super(fm);
             listaFragments = fragments;
         }

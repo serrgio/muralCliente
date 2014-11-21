@@ -61,6 +61,9 @@ import java.util.Calendar;
  */
 public class CalendarFormatter {
 
+    private CalendarFormatter() {
+    }
+
     public static Calendar stringToCalendar(String data){
         Calendar calendar = Calendar.getInstance();
         try{
@@ -68,7 +71,7 @@ public class CalendarFormatter {
             calendar.setTime(formatoData.parse(data));
             return calendar;
         } catch (Exception e) {
-            Log.e("Exception", e.getMessage());
+            Log.e("Exception", "Exception ocurred", e);
         }
         return calendar;
     }
@@ -78,9 +81,8 @@ public class CalendarFormatter {
         try {
             SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
             retorno = formatoData.format(calendar.getTime());
-            System.out.println(retorno);
         } catch (Exception e) {
-            Log.e("Exception", e.getMessage());
+            Log.e("Exception", "Exception ocurred", e);
         }
         return retorno;
     }
