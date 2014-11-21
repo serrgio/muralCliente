@@ -25,22 +25,6 @@ public class CartoesListFragment extends Fragment implements AdapterView.OnItemC
 
     //Construtor para receber parâmetros para carregar cartão
 
-   /* private final String titulo;
-    private final String data;
-    private final String descricao;
-    private final int imagem;
-
-    public CartoesListFragment(String titulo, String data, String descricao, int imagem){
-
-        this.titulo = titulo;
-        this.data = data;
-        this.descricao = descricao;
-        this.imagem = imagem;
-    }*/
-
-
-
-
 
     ListView listaDeCartoes;
     List<Cartao> cartoes;
@@ -68,15 +52,14 @@ public class CartoesListFragment extends Fragment implements AdapterView.OnItemC
     }
 
     private List<Cartao> geraCartoes() {
-        List<Cartao> cartoes = new ArrayList<Cartao>();
-        cartoes.add(criarcartao("Titulo 1", "21/10/2014", "Este é um texto de teste para o card numero 1", R.drawable.imagem));
-        cartoes.add(criarcartao("Titulo 2", "21/10/2014", "Este é um texto de teste para o card numero 2", R.drawable.imagem));
-        cartoes.add(criarcartao("Título 3", "21/10/2014", "Este é um texto de teste para o card numero 3", R.drawable.imagem));
-        cartoes.add(criarcartao("Título 4", "21/10/2014", "Este é um texto de teste para o card numero 4", R.drawable.imagem));
-        cartoes.add(criarcartao("Título 5", "21/10/2014", "Este é um texto de teste para o card numero 5", R.drawable.imagem));
-        cartoes.add(criarcartao("Título 6", "21/10/2014", "Este é um texto de teste para o card numero 6", R.drawable.imagem));
+        List<Cartao> cartaoDados = new ArrayList<Cartao>();
+        cartaoDados.add(criarcartao("Titulo 1", "21/10/2014", "Este é um texto de teste para o card numero 1", R.drawable.imagem));
+        cartaoDados.add(criarcartao("Titulo 2", "21/10/2014", "Este é um texto de teste para o card numero 2", R.drawable.imagem));
+        cartaoDados.add(criarcartao("Título 3", "21/10/2014", "Este é um texto de teste para o card numero 3", R.drawable.imagem));
+        cartaoDados.add(criarcartao("Título 4", "21/10/2014", "Este é um texto de teste para o card numero 4", R.drawable.imagem));
+        cartaoDados.add(criarcartao("Título 5", "21/10/2014", "Este é um texto de teste para o card numero 5", R.drawable.imagem));
 
-        return cartoes;
+        return cartaoDados;
     }
 
     private Cartao criarcartao(String titulo, String data, String descricao, int image) {

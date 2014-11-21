@@ -20,6 +20,7 @@ public class ListaCartoesAdapter extends ArrayAdapter<Cartao> {
 
     private Context context;
     private List<Cartao> cartoes = null;
+    private View viewcartao;
 
     public ListaCartoesAdapter(Context context, List<Cartao> cartoes) {
         super(context,0, cartoes);
@@ -28,26 +29,28 @@ public class ListaCartoesAdapter extends ArrayAdapter<Cartao> {
     }
 
     @Override
-    public View getView(int posicao, View viewcartao, ViewGroup parent) {
+    public View getView(int posicao,View viewcartao, ViewGroup parent) {
         Cartao cartao = this.cartoes.get(posicao);
 
-        if(viewcartao == null)
-            viewcartao = LayoutInflater.from(context).inflate(R.layout.item_list_cartao, null);
+        this.viewcartao = viewcartao;
 
-        ImageView imageViewcartao = (ImageView) viewcartao.findViewById(R.id.image_view_cartao);
-        imageViewcartao.setImageResource(cartao.getImagem());
+        if (this.viewcartao == null) {
+            this.viewcartao = LayoutInflater.from(context).inflate(R.layout.item_list_cartao, null);
 
-        TextView textViewTituloCartao = (TextView) viewcartao.findViewById(R.id.text_view_titulo_cartao);
-        textViewTituloCartao.setText(cartao.getTitulo());
+            ImageView imageViewcartao = (ImageView) this.viewcartao.findViewById(R.id.image_view_cartao);
+            imageViewcartao.setImageResource(cartao.getImagem());
 
-        TextView textViewDataCartao = (TextView)viewcartao.findViewById(R.id.text_view_data_cartao);
-        textViewDataCartao.setText(cartao.getData());
+            TextView textViewTituloCartao = (TextView) this.viewcartao.findViewById(R.id.text_view_titulo_cartao);
+            textViewTituloCartao.setText(cartao.getTitulo());
 
-        TextView textViewDescricaoCartao = (TextView) viewcartao.findViewById(R.id.text_view_descricao_cartao);
-        textViewDescricaoCartao.setText(cartao.getDescricao());
+            TextView textViewDataCartao = (TextView) this.viewcartao.findViewById(R.id.text_view_data_cartao);
+            textViewDataCartao.setText(cartao.getData());
 
-        return viewcartao;
-    }
+            TextView textViewDescricaoCartao = (TextView) this.viewcartao.findViewById(R.id.text_view_descricao_cartao);
+            textViewDescricaoCartao.setText(cartao.getDescricao());
+        }
+            return this.viewcartao;
+        }
 
 
 
