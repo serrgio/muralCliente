@@ -88,6 +88,8 @@ public class OuvidoriaFragment extends Fragment {
             case R.id.action_anexar_video:
                 chooserArquivo(VIDEO_TYPE);
                 break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -130,13 +132,15 @@ public class OuvidoriaFragment extends Fragment {
                     ouvidoriaItemAnexo = new OuvidoriaItemAnexo(getFileName(data.getData()), data.getData().getPath(), OuvidoriaItemAnexo.Media.VIDEO);
                     addItemLista(ouvidoriaItemAnexo);
                     break;
+                default:
+                    break;
             }
         }
     }
 
     public String getFileName(Uri uri) {
         String result = null;
-        if (uri.getScheme().equals("content")) {
+        if ("content".equals(uri.getScheme())) {
             Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
             try {
                 if (cursor != null && cursor.moveToFirst()) {

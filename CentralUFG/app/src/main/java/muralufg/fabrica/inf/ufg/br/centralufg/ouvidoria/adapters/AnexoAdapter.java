@@ -28,7 +28,7 @@ public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
     private List<OuvidoriaItemAnexo> mItens;
 
     public AnexoAdapter(Activity context, List<OuvidoriaItemAnexo> itens) {
-        super(context, layout , itens);
+        super(context, layout, itens);
         mContext = context;
         mItens = itens;
     }
@@ -40,35 +40,36 @@ public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
 
     @Override
     public void remove(OuvidoriaItemAnexo object) {
-        super.remove(object);
+        mItens.remove(object);
     }
 
-    public void remove(int position){
+    public void remove(int position) {
         mItens.remove(position);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View view = convertView;
         ViewHolder viewHolder;
 
-        if (convertView == null) {
+        if (view == null) {
             final LayoutInflater inflater = mContext.getLayoutInflater();
-            convertView = inflater.inflate(layout, null);
+            view = inflater.inflate(layout, null);
 
             viewHolder = new ViewHolder();
-            viewHolder.iconeAnexo = (ImageView) convertView.findViewById(R.id.iconeAnexo);
-            viewHolder.tituloAnexo = (TextView) convertView.findViewById(R.id.tituloAnexo);
-            viewHolder.removerAnexo = (ImageButton) convertView.findViewById(R.id.removerAnexo);
-            convertView.setTag(viewHolder);
+            viewHolder.iconeAnexo = (ImageView) view.findViewById(R.id.iconeAnexo);
+            viewHolder.tituloAnexo = (TextView) view.findViewById(R.id.tituloAnexo);
+            viewHolder.removerAnexo = (ImageButton) view.findViewById(R.id.removerAnexo);
+            view.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
 
         final OuvidoriaItemAnexo item = mItens.get(position);
 
         viewHolder.iconeAnexo.setImageResource(getBackgroundResource(item.getMedia()));
         viewHolder.tituloAnexo.setText(item.getNome());
-        viewHolder.removerAnexo.setOnClickListener(new View.OnClickListener(){
+        viewHolder.removerAnexo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 remove(item);
@@ -79,15 +80,14 @@ public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
         return convertView;
     }
 
-    private int getBackgroundResource(OuvidoriaItemAnexo.Media media){
-        if(media == OuvidoriaItemAnexo.Media.IMAGEM){
+    private int getBackgroundResource(OuvidoriaItemAnexo.Media media) {
+        if (media == OuvidoriaItemAnexo.Media.IMAGEM) {
             return R.drawable.ic_action_content_picture;
-        } else  if(media == OuvidoriaItemAnexo.Media.AUDIO){
+        } else if (media == OuvidoriaItemAnexo.Media.AUDIO) {
             return R.drawable.ic_action_audio;
-        } else if(media == OuvidoriaItemAnexo.Media.VIDEO){
+        } else if (media == OuvidoriaItemAnexo.Media.VIDEO) {
             return R.drawable.ic_action_video;
-        }
-        else{
+        } else {
             return R.drawable.ic_action_arquivo;
         }
     }
