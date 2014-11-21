@@ -31,8 +31,17 @@ public class OuvidoriaFragment extends Fragment {
     public static final int SELECT_AUDIO = 200;
     public static final int SELECT_VIDEO = 300;
 
+    /**
+     * Todos os tipos de arquivos de imagem
+     */
     public static final String IMAGEM_TYPE = "image/*";
+    /**
+     * Todos os tipos de arquivos de audio
+     */
     public static final String AUDIO_TYPE = "audio/*";
+    /**
+     * Todos os tipos de arquivos de video
+     */
     public static final String VIDEO_TYPE = "video/*";
 
     private TextView mOuvidoriaTitulo;
@@ -40,6 +49,9 @@ public class OuvidoriaFragment extends Fragment {
     private ListView mOuvidoriaListaAnexos;
     private ArrayAdapter<OuvidoriaItemAnexo> mAdapaterAnexos;
 
+    /**
+     * Construtor default
+     */
     public OuvidoriaFragment() {
     }
 
@@ -48,8 +60,10 @@ public class OuvidoriaFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
+        // Carrega o layout
         View rootView = inflater.inflate(R.layout.fragment_ouvidoria, container, false);
 
+        // Seta os elementos do layout
         mOuvidoriaTitulo = (TextView) rootView.findViewById(R.id.ouvidoriaTitulo);
         mOuvidoriaDescricao = (TextView) rootView.findViewById(R.id.ouvidoriaDescricao);
         mOuvidoriaListaAnexos = (ListView) rootView.findViewById(R.id.ouvidoriaListaAnexos);
@@ -61,13 +75,17 @@ public class OuvidoriaFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Inicia o adpter vazio para que os anexos  sejam inseridos dinamicamente
+        // quando selecionados pelo usuário
         mAdapaterAnexos = new AnexoAdapter(getActivity(), new ArrayList<OuvidoriaItemAnexo>());
         mOuvidoriaListaAnexos.setAdapter(mAdapaterAnexos);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // inflar o menu da ouvidoria na tela
         inflater.inflate(R.menu.ouvidoria, menu);
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -138,6 +156,12 @@ public class OuvidoriaFragment extends Fragment {
         }
     }
 
+    /**
+     * Capturar o nome do arquivo selecionado
+     *
+     * @param uri
+     * @return nome do arquivo
+     */
     public String getFileName(Uri uri) {
         String result = null;
         if ("content".equals(uri.getScheme())) {
@@ -162,6 +186,7 @@ public class OuvidoriaFragment extends Fragment {
 
     /**
      * Adicionar os anexos selecionados na lista para visualização
+     *
      * @param ouvidoriaItemAnexo
      */
     private void addItemLista(OuvidoriaItemAnexo ouvidoriaItemAnexo) {
@@ -171,6 +196,7 @@ public class OuvidoriaFragment extends Fragment {
 
     /**
      * Mostrar o Toast para o usuário
+     *
      * @param mensagem
      */
     private void showMenssage(String mensagem) {

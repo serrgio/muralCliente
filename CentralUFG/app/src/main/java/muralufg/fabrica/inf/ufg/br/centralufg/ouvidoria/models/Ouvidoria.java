@@ -7,7 +7,7 @@ public class Ouvidoria {
 
     String titulo;
     String descricao;
-
+    
     public Ouvidoria(String titulo, String descricao) {
         this.titulo = titulo;
         this.descricao = descricao;

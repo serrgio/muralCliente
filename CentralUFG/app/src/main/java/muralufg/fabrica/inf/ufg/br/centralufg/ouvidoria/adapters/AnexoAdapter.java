@@ -14,17 +14,29 @@ import java.util.List;
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.models.OuvidoriaItemAnexo;
 
+/**
+ * Adapter para a lista dos anexos que devem ser enviados para ouvidoria
+ */
 public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
 
     static int layout = R.layout.adapter_ouvidoria_item_anexo;
 
+    /**
+     * Padrão para acessar cada elemento que está sendo visualizado na lista
+     */
     static class ViewHolder {
         ImageView iconeAnexo;
         TextView tituloAnexo;
         ImageButton removerAnexo;
     }
 
+    /**
+     * Contexto da activity
+     */
     private Activity mContext;
+    /**
+     * Lista contendo os item anexos da ouvidoria
+     */
     private List<OuvidoriaItemAnexo> mItens;
 
     public AnexoAdapter(Activity context, List<OuvidoriaItemAnexo> itens) {
@@ -43,6 +55,11 @@ public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
         mItens.remove(object);
     }
 
+    /**
+     * Remove o item da lista a partir da posição
+     *
+     * @param position
+     */
     public void remove(int position) {
         mItens.remove(position);
     }
@@ -72,6 +89,7 @@ public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
         viewHolder.removerAnexo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Remover o anexo da lista
                 remove(item);
                 notifyDataSetChanged();
             }
@@ -80,6 +98,12 @@ public class AnexoAdapter extends ArrayAdapter<OuvidoriaItemAnexo> {
         return convertView;
     }
 
+    /**
+     * Selecionar a imagem que está no assets para representar o tipo de arquivo é o anexo
+     *
+     * @param media
+     * @return o icone do anexo
+     */
     private int getBackgroundResource(OuvidoriaItemAnexo.Media media) {
         if (media == OuvidoriaItemAnexo.Media.IMAGEM) {
             return R.drawable.ic_action_content_picture;

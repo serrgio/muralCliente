@@ -1,16 +1,19 @@
 package muralufg.fabrica.inf.ufg.br.centralufg.ouvidoria.models;
 
+/**
+ * Classe que representa o arquivo de mídia para ser enviado à ouvidoria
+ */
 public class OuvidoriaItemAnexo {
 
-    public enum Media{
-        IMAGEM,AUDIO,VIDEO;
+    public enum Media {
+        IMAGEM, AUDIO, VIDEO;
     }
 
     private String nome;
     private String uri;
     private Media media;
 
-    public OuvidoriaItemAnexo(String nome, String uri, Media media){
+    public OuvidoriaItemAnexo(String nome, String uri, Media media) {
         this.setNome(nome);
         this.setUri(uri);
         this.setMedia(media);
