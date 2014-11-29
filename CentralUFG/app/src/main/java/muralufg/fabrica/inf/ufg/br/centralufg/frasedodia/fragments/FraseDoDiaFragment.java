@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
-import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.services.FraseDoDiaService;
 import muralufg.fabrica.inf.ufg.br.centralufg.model.FraseDoDia;
@@ -18,7 +17,6 @@ import muralufg.fabrica.inf.ufg.br.centralufg.util.ServiceCompliant;
 
 public class FraseDoDiaFragment extends Fragment implements ServiceCompliant {
 
-    private SmoothProgressBar mPocketBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
