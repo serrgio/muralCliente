@@ -1,5 +1,7 @@
 package muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.services;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,26 +28,29 @@ public class FraseDoDiaService extends SimpleConnection {
         super.onPostExecute(result);
         switch (getHttpStatus()){
             case OK:
-                try {
-                    JSONObject object = new JSONObject(getResponse());
-                    String conteudo = object.getString("quote");
-                    String autor = object.getString("author");
-
-                    FraseDoDia frase = new FraseDoDia(conteudo,autor);
-                    handler.readObject(frase);
-                } catch (JSONException e) {
-                    handler.handleError("Ocorreu um erro com "+ getResponse() + ": " + e.getLocalizedMessage());
-                }
+                criaFrase();
                 break;
             case ERROR:
                 handler.handleError("Ocorreu um erro");
                 break;
-
             default:
                 handler.handleError(handler.getContextActivity().getResources().getString(
                         R.string.alerta_server_error));
                 break;
         }
 
+    }
+
+    public void criaFrase(){
+        try {
+            JSONObject object = new JSONObject(getResponse());
+            String conteudo = object.getString("quote");
+            String autor = object.getString("author");
+            FraseDoDia frase = new FraseDoDia(conteudo,autor);
+            handler.readObject(frase);
+        } catch (JSONException e) {
+            handler.handleError("Ocorreu um erro com "+ getResponse() + ": " + e.getLocalizedMessage());
+            Log.e("Exception", "JSONException ocurred", e);
+        }
     }
 }
