@@ -24,28 +24,26 @@ public class FraseDoDiaService extends SimpleConnection {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        switch (getHttpStatus()){
-            case OK:
-                try {
-                    JSONObject object = new JSONObject(getResponse());
-                    String conteudo = object.getString("quote");
-                    String autor = object.getString("author");
+        if (getHttpStatus() == OK) {
 
-                    FraseDoDia frase = new FraseDoDia(conteudo,autor);
-                    handler.readObject(frase);
-                } catch (JSONException e) {
-                    handler.handleError("Ocorreu um erro com "+ getResponse() + ": " + e.getLocalizedMessage());
-                }
-                break;
-            case ERROR:
-                handler.handleError("Ocorreu um erro");
-                break;
+            try {
+                JSONObject object = new JSONObject(getResponse());
+                String conteudo = object.getString("quote");
+                String autor = object.getString("author");
 
-            default:
+                FraseDoDia frase = new FraseDoDia(conteudo, autor);
+                handler.readObject(frase);
+            } catch (JSONException e) {
+                throw new IllegalArgumentException("Ocorreu um erro com " + getResponse() + ": ",e);
+
+            }
+        }else if (getHttpStatus() == ERROR) {
+
                 handler.handleError(handler.getContextActivity().getResources().getString(
                         R.string.alerta_server_error));
-                break;
-        }
 
-    }
+        }
+     }
+
 }
+

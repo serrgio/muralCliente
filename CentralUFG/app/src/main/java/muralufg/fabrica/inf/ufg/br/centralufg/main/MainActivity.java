@@ -52,12 +52,12 @@
 package muralufg.fabrica.inf.ufg.br.centralufg.main;
 
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,14 +67,12 @@ import android.widget.ListView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
-import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.fragments.FraseDoDiaFragment;
+import muralufg.fabrica.inf.ufg.br.centralufg.util.view.cartao.CartoesListFragment;
 
 
 public class MainActivity extends ActionBarActivity {
-
-    private int TEMPO_ALERTA = 3000;
 
     private String[] menuItems;
     private DrawerLayout mDrawerLayout;
@@ -203,12 +201,18 @@ public class MainActivity extends ActionBarActivity {
             case 1:
                 return new FraseDoDiaFragment();
 
+            case 2:
+                return new CartoesListFragment();
+
+
+
             default:
                 Crouton.makeText(this, getResources().getString(R.string.alerta_opcao_invalida),
                         Style.ALERT).show();
                 return new HelloFragment();
         }
     }
+
 
     @Override
     public void setTitle(CharSequence title) {
