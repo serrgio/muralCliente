@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'sonar-runner'
 
 buildscript {
     repositories {
@@ -32,7 +33,6 @@ android {
     }
 }
 
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile('de.keyboardsurfer.android.widget:crouton:1.8.4@aar') {
@@ -48,4 +48,14 @@ dependencies {
     compile 'com.github.kevinsawicki:http-request:5.6'
     //Feedback visual
     compile 'com.github.castorflex.smoothprogressbar:library:0.5.2'
+}
+
+sonarRunner {
+    sonarProperties {
+        property "sonar.host.url", "http://my.server.com"
+        property "sonar.jdbc.url", "jdbc:mysql://my.server.com/sonar"
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "Fred Flintstone"
+        property "sonar.jdbc.password", "very clever"
+    }
 }
