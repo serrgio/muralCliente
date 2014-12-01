@@ -53,12 +53,12 @@ package muralufg.fabrica.inf.ufg.br.centralufg.main;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,11 +71,9 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
-import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
 import muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.fragments.FraseDoDiaFragment;
 import muralufg.fabrica.inf.ufg.br.centralufg.gcm.GCMRegister;
-import muralufg.fabrica.inf.ufg.br.centralufg.gcm.GCMSendMessageTest;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -104,7 +102,6 @@ public class MainActivity extends ActionBarActivity {
         mTitle = mDrawerTitle = getTitle();
 
         gcmRegister = new GCMRegister(this);
-        GCMSendMessageTest gcmSendMessageTest = new GCMSendMessageTest(this);
 
         menuItems = getResources().getStringArray(R.array.opcoes_menu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -159,8 +156,6 @@ public class MainActivity extends ActionBarActivity {
             if (idRegistroGCM.isEmpty()) {
                 gcmRegister.execute();
             }
-
-            gcmSendMessageTest.execute();
 
         } else {
             Log.i(TAG, "Não encontrado Google Play Services APK válido.");
