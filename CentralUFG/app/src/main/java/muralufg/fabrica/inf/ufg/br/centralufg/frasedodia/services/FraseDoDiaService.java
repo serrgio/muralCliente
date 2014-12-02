@@ -33,7 +33,6 @@ public class FraseDoDiaService extends SimpleConnection {
             case ERROR:
                 handler.handleError("Ocorreu um erro");
                 break;
-
             default:
                 handler.handleError(handler.getContextActivity().getResources().getString(
                         R.string.alerta_server_error));

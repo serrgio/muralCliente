@@ -2,6 +2,7 @@ package muralufg.fabrica.inf.ufg.br.centralufg.util;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.github.kevinsawicki.http.HttpRequest;
 

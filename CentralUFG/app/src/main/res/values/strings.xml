@@ -13,6 +13,7 @@
         <item>Home</item>
         <item>Frase do dia</item>
         <item>Cartão</item>
+        <item>Compromissos</item>
     </string-array>
 
     <!--! Frases !-->
@@ -28,4 +29,6 @@
     <string name="gcm_sender_id">437002960869</string>
     <string name="property_reg_id">registration_id</string>
 
+    <!--! Compromisso !-->
+    <string name="diaDaSemana">Dia da Semana</string>
 </resources>
