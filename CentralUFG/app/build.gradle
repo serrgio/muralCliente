@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId "muralufg.fabrica.inf.ufg.br.centralufg"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 20
         versionCode 1
         versionName "1.0"
