@@ -56,6 +56,12 @@ public class GCMUnregister{
     }
 
 
+    /**
+     * Busca a versão do aplicativo instalado.
+     *
+     * @param context
+     * @return int representando a versão do aplicativo instalada.
+     */
     private static int getAppVersion(Context context) {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -66,6 +72,11 @@ public class GCMUnregister{
     }
 
 
+    /**
+     * Delete o id de registro no GCM nas preferências do dispositivo.
+     *
+     * @param context
+     */
     private void deleteRegistrationId(Context context) {
 
         int versaoApp = getAppVersion(context);

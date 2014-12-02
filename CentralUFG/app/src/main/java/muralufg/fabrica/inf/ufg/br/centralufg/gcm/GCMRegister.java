@@ -34,13 +34,20 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     static final String TAG = "GCMRegister";
     private static final Logger LOGGER = Logger.getLogger("GCMRegister");
 
-    public GCMRegister(Context context){
+
+    public GCMRegister(Context context) {
         this.context = context;
         this.properyRegId = context.getResources().getString(R.string.property_reg_id);
         this.senderId = context.getResources().getString(R.string.gcm_sender_id);
         this.sharedPreferences = context.getSharedPreferences(context.getClass().getSimpleName(), Context.MODE_PRIVATE);
     }
 
+
+    /**
+     * Registra o dispositivo no GCM em background.
+     *
+     * @return id de registro no GCM.
+     */
     @Override
     public String doInBackground(Void... params) {
 
@@ -60,6 +67,11 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     }
 
 
+    /**
+     * Verifica se os serviços do google (Play) estão disponíveis.
+     *
+     * @return boolean representando a disponibilidade da Google Play.
+     */
     public boolean checkPlayServices() {
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
         if (resultCode != ConnectionResult.SUCCESS) {
@@ -68,7 +80,12 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
         return true;
     }
 
-
+    /**
+     * Busca o id de registro no GCM nas preferências do dispositivo.
+     *
+     * @param context
+     * @return String representando o id de registro ou string vazia caso não possua o id armazenado.
+     */
     public String getRegistrationId(Context context) {
 
         LOGGER.info("Informacao do registro " + context.getPackageName());
@@ -87,6 +104,12 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     }
 
 
+    /**
+     * Busca a versão do aplicativo instalado.
+     *
+     * @param context
+     * @return int representando a versão do aplicativo instalada.
+     */
     private static int getAppVersion(Context context) {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -97,12 +120,18 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     }
 
 
-    private void storeRegistrationId(Context context, String regId) {
+    /**
+     * Salva o id de registro no GCM nas preferências do dispositivo.
+     *
+     * @param context
+     * @param idRegistroGCM Id de registro no GCM
+     */
+    private void storeRegistrationId(Context context, String idRegistroGCM) {
 
         int versaoApp = getAppVersion(context);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(properyRegId, regId);
+        editor.putString(properyRegId, idRegistroGCM);
         editor.putInt(appVersionProperty, versaoApp);
         editor.commit();
 
