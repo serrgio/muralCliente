@@ -106,12 +106,19 @@ public class MainActivity extends ActionBarActivity {
                 .commit();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /* Itens no ActionBar, respectivamente,
+        host Activity
+        DrawerLayout object
+        nav drawer icon to replace 'Up' caret
+        "open drawer" description
+        "close drawer" description
+        */
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
-                R.string.label_menu,  /* "open drawer" description */
-                R.string.label_fechar  /* "close drawer" description */
+                this,
+                mDrawerLayout,
+                R.drawable.ic_drawer,
+                R.string.label_menu,
+                R.string.label_fechar
         ) {
 
             /** Called when a drawer has settled in a completely closed state. */

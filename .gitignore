@@ -18,6 +18,13 @@ out/
 .idea_modules/
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
-#com_crashlytics_export_strings.xml
-#crashlytics.properties
-#crashlytics-build.properties
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+*.iml
+
+# OS X
+.DS_Store
+
+# Gradle
+.gradle/
