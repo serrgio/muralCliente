@@ -21,3 +21,9 @@ out/
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
+
+# OS X
+.DS_Store
+
+# Gradle
+.gradle/
