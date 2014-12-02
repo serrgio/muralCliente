@@ -23,9 +23,6 @@ import muralufg.fabrica.inf.ufg.br.centralufg.R;
 public class CartoesListFragment extends Fragment implements AdapterView.OnItemClickListener {
 
 
-    //Construtor para receber parâmetros para carregar cartão
-
-
     ListView listaDeCartoes;
     List<Cartao> cartoes;
 
