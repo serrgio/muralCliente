@@ -33,7 +33,7 @@ public class SimpleConnection extends AsyncTask<Void, Void, Void> {
             httpStatus = request.code();
             response = request.body();
         } catch (Exception e){
-            LOGGER.info("Erro no formato do JSON: "+e.getMessage(),e);
+            LOGGER.info("Erro ao realizar requisicao: " + e.getMessage(), e);
             return null;
         }
         return null;

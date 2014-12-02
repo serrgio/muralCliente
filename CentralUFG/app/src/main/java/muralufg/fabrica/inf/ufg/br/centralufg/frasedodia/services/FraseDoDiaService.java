@@ -1,5 +1,6 @@
 package muralufg.fabrica.inf.ufg.br.centralufg.frasedodia.services;
 
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.log4j.Logger;
@@ -41,7 +42,7 @@ public class FraseDoDiaService extends SimpleConnection {
      }
     }
 
-    private void trataHttpStatusOk(){
+    private void trataHttpStatusOk() {
         try {
             JSONObject object = new JSONObject(getResponse());
             String conteudo = object.getString("quote");
@@ -51,7 +52,7 @@ public class FraseDoDiaService extends SimpleConnection {
             handler.readObject(frase);
         } catch (JSONException e) {
             handler.handleError("Ocorreu um erro com "+ getResponse() + ": " + e.getLocalizedMessage());
-            LOGGER.info("Erro no formato do JSON: "+e.getMessage(),e);
+            LOGGER.info("Erro no formato do JSON: " + e.getMessage(), e);
         }
     }
 }
