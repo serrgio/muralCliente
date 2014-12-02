@@ -28,7 +28,6 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     String properyRegId;
     String appVersionProperty = "";
     String appVersion = "";
-    int playServicesResolutionRequest;
     Context context;
     String idRegistroGCM;
     String senderId;
@@ -40,7 +39,6 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
         this.properyRegId = context.getResources().getString(R.string.property_reg_id);
         this.senderId = context.getResources().getString(R.string.gcm_sender_id);
         this.sharedPreferences = context.getSharedPreferences(context.getClass().getSimpleName(), Context.MODE_PRIVATE);
-        this.playServicesResolutionRequest = context.getResources().getInteger(R.integer.play_services_resolution_request);
     }
 
     @Override
@@ -55,7 +53,7 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
 
         } catch (IOException ex) {
             Log.i(TAG, "Erro ao registrar GCM");
-            throw new MyException("context", ex);
+            throw new MyException("Erro ao registrar GCM", ex);
         }
 
         return idRegistroGCM;
@@ -108,10 +106,5 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
         editor.putInt(appVersionProperty, versaoApp);
         editor.commit();
 
-    }
-
-
-    public SharedPreferences getSharedPreferences() {
-        return sharedPreferences;
     }
 }
