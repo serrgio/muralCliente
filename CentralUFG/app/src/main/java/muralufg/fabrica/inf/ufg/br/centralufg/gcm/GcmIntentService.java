@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * Created by italogustavomirandamelo on 27/11/14.
@@ -13,6 +15,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
  */
 public class GcmIntentService extends IntentService {
 
+    private static final Logger LOGGER = Logger.getLogger("GcmIntentService");
 
     public GcmIntentService() {
 
@@ -47,12 +50,15 @@ public class GcmIntentService extends IntentService {
 
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
 
-                // This loop represents the service doing some work.
+                // Simulando algum trabalho do servidor
+                // Assim que o método sendNotification for implementado,
+                // poderemos retirar esse Thread.sleep().
 
                 for (int i = 0; i < 5; i++) {
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
+                        LOGGER.error("Thread interrompida: " + e.getMessage());
                     }
                 }
 
@@ -69,6 +75,8 @@ public class GcmIntentService extends IntentService {
     private void sendNotification(String msg) {
 
         //@TODO Método que chamará a notificação
+        // Provavel implementacao do Victor
+        LOGGER.info("Notificacao: " + msg);
 
     }
 }

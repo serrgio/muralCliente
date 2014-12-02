@@ -13,6 +13,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="muralufg.fabrica.inf.ufg.br.centralufg.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"

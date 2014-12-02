@@ -78,8 +78,6 @@ import muralufg.fabrica.inf.ufg.br.centralufg.gcm.GCMRegister;
 
 public class MainActivity extends ActionBarActivity {
 
-    private int TEMPO_ALERTA = 3000;
-
     private String[] menuItems;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
