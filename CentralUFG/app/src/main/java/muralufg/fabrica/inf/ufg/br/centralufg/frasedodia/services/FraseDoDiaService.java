@@ -11,8 +11,8 @@ import muralufg.fabrica.inf.ufg.br.centralufg.util.SimpleConnection;
 
 public class FraseDoDiaService extends SimpleConnection {
 
-    private final static String URL = "http://fabrica2014.apiary-mock.com/frasedodia";
-    private final static Logger LOGGER = Logger.getLogger("FraseDoDiaService");
+    private static final String URL = "http://fabrica2014.apiary-mock.com/frasedodia";
+    private static final Logger LOGGER = Logger.getLogger("FraseDoDiaService");
 
     public FraseDoDiaService(ServiceCompliant handler) {
         super(handler,URL);

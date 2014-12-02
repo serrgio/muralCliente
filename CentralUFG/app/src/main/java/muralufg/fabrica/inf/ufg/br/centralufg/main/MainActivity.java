@@ -120,11 +120,11 @@ public class MainActivity extends ActionBarActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
-                R.string.label_menu,  /* "open drawer" description */
-                R.string.label_fechar  /* "close drawer" description */
+                this,
+                mDrawerLayout,
+                R.drawable.ic_drawer,
+                R.string.label_menu,
+                R.string.label_fechar
         ) {
 
             /** Called when a drawer has settled in a completely closed state. */
@@ -151,7 +151,7 @@ public class MainActivity extends ActionBarActivity {
             gcm = GoogleCloudMessaging.getInstance(this);
             idRegistroGCM = gcmRegister.getRegistrationId(context);
 
-            if (idRegistroGCM.isEmpty() || idRegistroGCM.equals("")) {
+            if (idRegistroGCM.isEmpty() || "".equals(idRegistroGCM)) {
                 gcmRegister.execute();
             }
 
@@ -181,7 +181,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
