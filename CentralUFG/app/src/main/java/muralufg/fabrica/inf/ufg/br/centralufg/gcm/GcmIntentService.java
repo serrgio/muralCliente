@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 public class GcmIntentService extends IntentService {
 
     private static final Logger LOGGER = Logger.getLogger("GcmIntentService");
+    private static final int CINCOSEGUNDOS= 5000;
+    private static final int CINCOVOLTAS = 5;
 
     public GcmIntentService() {
 
@@ -32,7 +34,8 @@ public class GcmIntentService extends IntentService {
         // in your BroadcastReceiver.
         String messageType = gcm.getMessageType(intent);
 
-        if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
+        // has effect of unparcelling Bundle
+        if (!extras.isEmpty()) {
             /*
              * Filter messages based on message type. Since it is likely that GCM
              * will be extended in the future with new message types, just ignore
@@ -49,19 +52,7 @@ public class GcmIntentService extends IntentService {
                 // If it's a regular GCM message, do some work.
 
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-
-                // Simulando algum trabalho do servidor
-                // Assim que o método sendNotification for implementado,
-                // poderemos retirar esse Thread.sleep().
-
-                for (int i = 0; i < 5; i++) {
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        LOGGER.error("Thread interrompida: " + e.getMessage());
-                    }
-                }
-
+                simulaTrabalhoServidor();
                 // Post notification of received message.
                 sendNotification("Received: " + extras.toString());
             }
@@ -71,10 +62,23 @@ public class GcmIntentService extends IntentService {
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
+    private void simulaTrabalhoServidor() {
+        // Simulando algum trabalho do servidor
+        // Assim que o método sendNotification for implementado,
+        // poderemos retirar esse Thread.sleep().
+        try {
+            for (int i = 0; i < CINCOVOLTAS; i++) {
+                    Thread.sleep(CINCOSEGUNDOS);
+            }
+        } catch (InterruptedException e) {
+            LOGGER.error("Thread interrompida: " + e.getMessage());
+        }
+    }
+
 
     private void sendNotification(String msg) {
 
-        //@TODO Método que chamará a notificação
+        //TODO
         // Provavel implementacao do Victor
         LOGGER.info("Notificacao: " + msg);
 
