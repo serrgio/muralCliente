@@ -11,6 +11,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
 import muralufg.fabrica.inf.ufg.br.centralufg.R;
@@ -31,6 +33,7 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     String idRegistroGCM;
     String senderId;
     static final String TAG = "GCMRegister";
+    private static final Logger LOGGER = Logger.getLogger("GCMRegister");
 
     public GCMRegister(Context context){
         this.context = context;
@@ -70,6 +73,7 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
 
     public String getRegistrationId(Context context) {
 
+        LOGGER.info("Informacao do registro " + context.getPackageName());
         String registrationId = sharedPreferences.getString(properyRegId, "");
         if (registrationId.isEmpty()) {
             return "";
