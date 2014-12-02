@@ -12,7 +12,6 @@ import muralufg.fabrica.inf.ufg.br.centralufg.main.MainActivity;
 
 public class NotificacaoPush {
 
-    private NotificationManager mNotificationManager;
     public static final int NOTIFICATION_ID = 1;
 
     public void mostraNotificacao(String titulo, String mensagem, Context context) {
