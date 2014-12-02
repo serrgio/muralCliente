@@ -9,8 +9,8 @@ import muralufg.fabrica.inf.ufg.br.centralufg.R;
 
 public class SimpleConnection extends AsyncTask<Void, Void, Void> {
 
-    protected final int OK = 200;
-    protected final int ERROR = 400;
+    protected static final int OK = 200;
+    protected static final int ERROR = 400;
     private int httpStatus;
     private String response;
     protected ServiceCompliant handler;
@@ -29,8 +29,8 @@ public class SimpleConnection extends AsyncTask<Void, Void, Void> {
             HttpRequest request = HttpRequest.get(url);
             httpStatus = request.code();
             response = request.body();
-        }catch (Exception e){
-            return null;
+        }catch (RuntimeException  e){
+            throw e;
         }
         return null;
     }
