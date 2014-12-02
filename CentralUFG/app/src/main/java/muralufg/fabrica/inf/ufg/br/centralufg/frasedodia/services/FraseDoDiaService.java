@@ -40,7 +40,6 @@ public class FraseDoDiaService extends SimpleConnection {
 
         }
      }
-    }
 
     private void trataHttpStatusOk() {
         try {
