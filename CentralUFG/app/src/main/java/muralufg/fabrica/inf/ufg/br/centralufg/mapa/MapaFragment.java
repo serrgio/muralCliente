@@ -31,8 +31,8 @@ import muralufg.fabrica.inf.ufg.br.centralufg.util.ServiceCompliant;
 
 public class MapaFragment extends Fragment implements ServiceCompliant {
 
-    private final int TIME_TO_ZOOM = 2000; //em milisegundos
-    private final float ZOOM = 14f;
+    private static final int TIME_TO_ZOOM = 2000; //em milisegundos
+    private static final float ZOOM = 14f;
 
     public List<Ponto> getPontosAdicionados() {
         return pontosAdicionados;
@@ -84,16 +84,13 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-
                 //pergunta ao usuario em qual aplicativo de mapas ele quer abrir a posição.
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("geo://?ll=");
                 stringBuilder.append(ponto.getLatitude());
                 stringBuilder.append(",");
                 stringBuilder.append(ponto.getLongitude());
-
                 String url = stringBuilder.toString();
-
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 if (intent.resolveActivity(getContextActivity().getPackageManager()) != null) {
@@ -143,9 +140,7 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
         criteria.setPowerRequirement(Criteria.POWER_LOW);
         String provider = locationmanager.getBestProvider(criteria, true);
 
-        Location location = locationmanager.getLastKnownLocation(provider);
-
-        return location;
+        return locationmanager.getLastKnownLocation(provider);
     }
 
 
@@ -167,7 +162,6 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
         mapView.onLowMemory();
     }
 
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -187,7 +181,7 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
 
     @Override
     public void readObject(Object object) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
