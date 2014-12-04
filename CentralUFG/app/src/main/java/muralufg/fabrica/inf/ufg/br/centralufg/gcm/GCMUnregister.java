@@ -46,7 +46,7 @@ public class GCMUnregister{
                 gcm = GoogleCloudMessaging.getInstance(context);
             }
             gcm.unregister();
-            deleteRegistrationId(context);
+            deleteRegistrationId();
 
         } catch (IOException ex) {
             throw new MyException("Erro ao desregistrar GCM", ex);
@@ -59,10 +59,9 @@ public class GCMUnregister{
     /**
      * Busca a versão do aplicativo instalado.
      *
-     * @param context
      * @return int representando a versão do aplicativo instalada.
      */
-    private static int getAppVersion(Context context) {
+    private int getAppVersion() {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return packageInfo.versionCode;
@@ -75,11 +74,10 @@ public class GCMUnregister{
     /**
      * Delete o id de registro no GCM nas preferências do dispositivo.
      *
-     * @param context
      */
-    private void deleteRegistrationId(Context context) {
+    private void deleteRegistrationId() {
 
-        int versaoApp = getAppVersion(context);
+        int versaoApp = getAppVersion();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(properyRegId, null);
