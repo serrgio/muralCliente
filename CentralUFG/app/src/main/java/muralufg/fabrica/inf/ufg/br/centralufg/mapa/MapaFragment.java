@@ -50,9 +50,8 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         MapsInitializer.initialize(getContextActivity());
-
+        pontosAdicionados = new ArrayList<Ponto>();
     }
 
     @Override
@@ -79,6 +78,7 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
         LatLng latLng = new LatLng(ponto.getLatitude(), ponto.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.title(ponto.getDescricao()).position(latLng);
+        pontosAdicionados.add(ponto);
 
         //adicionar evento ao marker.
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -99,9 +99,7 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
                 return true;
             }
         });
-
         googleMap.addMarker(markerOptions);
-
     }
 
     /**
@@ -111,7 +109,6 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
         googleMap = mapView.getMap();
         googleMap.setMyLocationEnabled(true);
     }
-
 
     /**
      * Aproxima a camera do ponto desejado.
@@ -127,10 +124,11 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
     }
 
     /**
-     * Captura a ultima posição conhecida.
-     * @return objeto Location.
+     * Captura a ultima posição conhecida pelo gps.
+     * POde ser utilizado para saber a posição atual do dispositivo.
+     * @return objeto Ponto.
      */
-    public Location getLocation() {
+    public Ponto getUltimoPonto() {
         LocationManager locationmanager = (LocationManager) getContextActivity().getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_COARSE);
@@ -140,9 +138,14 @@ public class MapaFragment extends Fragment implements ServiceCompliant {
         criteria.setPowerRequirement(Criteria.POWER_LOW);
         String provider = locationmanager.getBestProvider(criteria, true);
 
-        return locationmanager.getLastKnownLocation(provider);
-    }
+        Location l = locationmanager.getLastKnownLocation(provider);
+        Ponto p = new Ponto();
+        p.setDescricao("Localização Atual");
+        p.setLatitude(l.getLatitude());
+        p.setLongitude(l.getLongitude());
 
+        return p;
+    }
 
     @Override
     public void onResume() {
