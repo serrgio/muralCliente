@@ -91,7 +91,6 @@ public class MainActivity extends ActionBarActivity {
     static final String TAG = "MainActivity";
     GoogleCloudMessaging gcm;
     String idRegistroGCM;
-    Context context;
 
     GCMRegister gcmRegister;
 
@@ -159,7 +158,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (gcmRegister.checkPlayServices()) {
             gcm = GoogleCloudMessaging.getInstance(this);
-            idRegistroGCM = gcmRegister.getRegistrationId(context);
+            idRegistroGCM = gcmRegister.getRegistrationId();
 
             if (idRegistroGCM.isEmpty() || "".equals(idRegistroGCM)) {
                 gcmRegister.execute();
