@@ -11,7 +11,8 @@ import org.apache.log4j.Logger;
 import muralufg.fabrica.inf.ufg.br.centralufg.model.NotificacaoPush;
 
 public class GcmIntentService extends IntentService {
-    private static final Logger LOGGER = Logger.getLogger("GcmIntentService");
+
+	private static final Logger LOGGER = Logger.getLogger("GcmIntentService");
 
     public GcmIntentService() {
         super("GcmIntentService");
@@ -34,14 +35,10 @@ public class GcmIntentService extends IntentService {
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private int NOTIFICATION_ID = 0;
-
     private void sendNotification(String msg) {
         NotificacaoPush notificacaoPush = new NotificacaoPush();
         notificacaoPush.mostraNotificacao(msg,this);
-
-
-        //LOGGER.info("Notificacao: " + msg);
+        LOGGER.info("Notificacao: " + msg);
 
     }
 }

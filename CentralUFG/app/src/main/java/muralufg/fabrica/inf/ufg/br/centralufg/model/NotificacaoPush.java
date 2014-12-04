@@ -13,7 +13,7 @@ import muralufg.fabrica.inf.ufg.br.centralufg.util.view.cartao.DetalheActivity;
 
 public class NotificacaoPush {
 
-    public static int NOTIFICATION_ID = 1;
+    private int NOTIFICATION_ID = 1;
 
     public void mostraNotificacao(String msg, Context context) {
         NotificationCompat.Builder mBuilder =
