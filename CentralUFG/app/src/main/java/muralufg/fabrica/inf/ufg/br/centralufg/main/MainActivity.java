@@ -51,6 +51,7 @@
  */
 package muralufg.fabrica.inf.ufg.br.centralufg.main;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
