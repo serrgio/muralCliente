@@ -8,47 +8,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import muralufg.fabrica.inf.ufg.br.centralufg.main.MainActivity;
+import muralufg.fabrica.inf.ufg.br.centralufg.R;
+import muralufg.fabrica.inf.ufg.br.centralufg.util.view.cartao.DetalheActivity;
 
 public class NotificacaoPush {
 
-    public static final int NOTIFICATION_ID = 1;
+    private int notificationId = 1;
 
-    public void mostraNotificacao(String titulo, String mensagem, Context context) {
-        int count = 0;
-        int i = 0;
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setContentTitle(titulo).setContentText(mensagem);
-
-        Intent resultIntent = new Intent(context, MainActivity.class);
-        resultIntent.putExtra("mensagem_recebida",mensagem);
-        /*
-        O MainActivity poderá ser substituído caso tenha sido criado um Activity de cartões feito
-        pelo grupo da Iasmin.
-         */
-        TaskStackBuilder task = TaskStackBuilder.create(context);
-        task.addParentStack(MainActivity.class);
-        task.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent = task.getPendingIntent
-                (0,PendingIntent.FLAG_UPDATE_CURRENT);
+    public void mostraNotificacao(String msg, Context context) {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle("Nova Mensagem")
+                        .setNumber(notificationId++)
+                        .setContentText((notificationId) + " mensagem(s) recebida(s)");
+        Intent resultIntent = new Intent(context, DetalheActivity.class);
+        resultIntent.putExtra("mensagem_recebida", msg);
+        resultIntent.putExtra("qtde_msgs", notificationId);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addParentStack(DetalheActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
-
-        Notification notificacao = mBuilder.build();
-        if(count ==1){
-            count ++;
-        }else{
-            i++;
-        }
-        notificacao.flags |= Notification.FLAG_AUTO_CANCEL;
-        notificacao.defaults = Notification.DEFAULT_ALL;
-        notificacao.number +=i;
-
-        NotificationManager gerenciaNotificacao = (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
-        gerenciaNotificacao.notify(0,notificacao);
-
-
-    }
+        Notification notification = mBuilder.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.number = notificationId;
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(notificationId, notification);
+            }
 }
 
 
