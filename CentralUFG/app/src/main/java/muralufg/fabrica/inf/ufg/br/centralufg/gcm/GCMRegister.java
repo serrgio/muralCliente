@@ -56,7 +56,7 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
                 gcm = GoogleCloudMessaging.getInstance(context);
             }
             idRegistroGCM = gcm.register(senderId);
-            storeRegistrationId(context, idRegistroGCM);
+            storeRegistrationId(idRegistroGCM);
 
         } catch (IOException ex) {
             Log.i(TAG, "Erro ao registrar GCM");
@@ -83,10 +83,9 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     /**
      * Busca o id de registro no GCM nas preferências do dispositivo.
      *
-     * @param context
      * @return String representando o id de registro ou string vazia caso não possua o id armazenado.
      */
-    public String getRegistrationId(Context context) {
+    public String getRegistrationId() {
 
         LOGGER.info("Informacao do registro " + context.getPackageName());
         String registrationId = sharedPreferences.getString(properyRegId, "");
@@ -95,7 +94,7 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
         }
 
         int registeredVersion = sharedPreferences.getInt(appVersion, Integer.MIN_VALUE);
-        int currentVersion = getAppVersion(this.context);
+        int currentVersion = getAppVersion();
         if (registeredVersion != currentVersion) {
             return "";
         }
@@ -107,10 +106,9 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     /**
      * Busca a versão do aplicativo instalado.
      *
-     * @param context
      * @return int representando a versão do aplicativo instalada.
      */
-    private static int getAppVersion(Context context) {
+    private int getAppVersion() {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return packageInfo.versionCode;
@@ -123,12 +121,11 @@ public class GCMRegister extends AsyncTask<Void, Void, String> {
     /**
      * Salva o id de registro no GCM nas preferências do dispositivo.
      *
-     * @param context
      * @param idRegistroGCM Id de registro no GCM
      */
-    private void storeRegistrationId(Context context, String idRegistroGCM) {
+    private void storeRegistrationId(String idRegistroGCM) {
 
-        int versaoApp = getAppVersion(context);
+        int versaoApp = getAppVersion();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(properyRegId, idRegistroGCM);

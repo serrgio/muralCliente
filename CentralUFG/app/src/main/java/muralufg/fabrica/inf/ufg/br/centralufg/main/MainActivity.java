@@ -159,7 +159,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (gcmRegister.checkPlayServices()) {
             gcm = GoogleCloudMessaging.getInstance(this);
-            idRegistroGCM = gcmRegister.getRegistrationId(context);
+            idRegistroGCM = gcmRegister.getRegistrationId();
 
             if (idRegistroGCM.isEmpty() || "".equals(idRegistroGCM)) {
                 gcmRegister.execute();
