@@ -99,6 +99,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        context = this.getApplicationContext();
+
         mTitle = mDrawerTitle = getTitle();
 
         gcmRegister = new GCMRegister(this);
