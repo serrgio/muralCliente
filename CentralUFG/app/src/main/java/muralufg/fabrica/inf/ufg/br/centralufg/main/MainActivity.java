@@ -51,7 +51,6 @@
  */
 package muralufg.fabrica.inf.ufg.br.centralufg.main;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -91,6 +90,7 @@ public class MainActivity extends ActionBarActivity {
     static final String TAG = "MainActivity";
     GoogleCloudMessaging gcm;
     String idRegistroGCM;
+    Context context;
 
     GCMRegister gcmRegister;
 
@@ -98,8 +98,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        context = this.getApplicationContext();
 
         mTitle = mDrawerTitle = getTitle();
 
